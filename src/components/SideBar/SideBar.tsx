@@ -1,5 +1,4 @@
 import { Flex, FlexProps, List, ListItemProps } from "@chakra-ui/layout";
-import React from "react";
 
 const SideBar: React.FC<SideBarProps> = ({ side, align, children, ...props }: SideBarProps) => {
   const sideProps = side === "left" ? { left: 0 } : { right: 0 };

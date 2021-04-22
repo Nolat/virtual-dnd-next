@@ -37,6 +37,7 @@ export const Default: Story<SideBarProps> = ({ ...args }) => {
           bg={tooltipBg}
           color={color}
           icon={<FiMap />}
+          aria-label="Import your battlemaps"
           tooltip="Import your battlemaps"
           placement="right"
         />

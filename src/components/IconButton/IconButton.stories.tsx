@@ -19,6 +19,7 @@ export const Default: Story = ({ onClick }) => {
       bg={bgColor}
       color={color}
       icon={<FiMap />}
+      aria-label="Import your battlemaps"
       tooltip="Import your battlemaps"
       placement="right"
       onClick={onClick}
