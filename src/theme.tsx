@@ -16,6 +16,7 @@ const theme = extendTheme({
   },
   fonts,
   breakpoints,
+  radii: { "4xl": "3rem" },
   initialColorMode: "light",
   useSystemColorMode: true
 });
