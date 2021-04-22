@@ -1,8 +1,9 @@
 import { Button } from "@chakra-ui/button";
 import { Stack } from "@chakra-ui/layout";
-import { Hero } from "modules/landing";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
+
+import { Hero } from "modules/landing";
 
 const Index = () => {
   const router = useRouter();

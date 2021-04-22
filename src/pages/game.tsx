@@ -3,6 +3,7 @@ import { Box, ListItem } from "@chakra-ui/layout";
 import Head from "next/head";
 
 import { DarkModeSwitch, SideBar } from "components";
+import { Board } from "modules/game";
 
 const Index = () => {
   const bg = useColorModeValue("gray.100", "gray.800");
@@ -29,7 +30,9 @@ const Index = () => {
         alignSelf="flex-end"
         borderTopLeftRadius="4xl"
         zIndex={2}
-      />
+      >
+        <Board />
+      </Box>
     </>
   );
 };
