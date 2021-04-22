@@ -1,34 +1,30 @@
-import { useColorModeValue } from "@chakra-ui/color-mode";
-import { Box, ListItem } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/button";
+import { Stack } from "@chakra-ui/layout";
+import { Hero } from "modules/landing";
+import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 
-import { DarkModeSwitch, SideBar } from "components";
-
 const Index = () => {
-  const bg = useColorModeValue("gray.100", "gray.800");
+  const router = useRouter();
 
   return (
     <>
       <Head>
-        <title>Index</title>
+        <title>Virtual D&D</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <SideBar side="left" align="bottom">
-        <ListItem>
-          <DarkModeSwitch />
-        </ListItem>
-      </SideBar>
+      <Hero title="Welcome to Virtual D&D" />
 
-      <Box
-        bg={bg}
-        h="100%"
-        w="calc(100% - 4em)"
-        mt="3em"
-        mb={0}
-        alignSelf="flex-end"
-        borderTopLeftRadius="4xl"
-      />
+      <Stack spacing="1.5rem" width="100%" maxWidth="32rem" mt="-45vh" pt="8rem" px="1rem">
+        <Button colorScheme="orange" onClick={() => router.push("/game")}>
+          Start Game
+        </Button>
+
+        <Button colorScheme="orange" onClick={() => router.push("/game")}>
+          Join Game
+        </Button>
+      </Stack>
     </>
   );
 };

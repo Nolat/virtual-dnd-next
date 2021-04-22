@@ -8,7 +8,7 @@ const SideBar: React.FC<SideBarProps> = ({ side, align, children, ...props }: Si
     <Flex
       {...props}
       h="100%"
-      w="4em"
+      w="64px"
       p={4}
       position="fixed"
       top={0}
