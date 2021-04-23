@@ -1,11 +1,15 @@
 import { useColorModeValue } from "@chakra-ui/color-mode";
 import { Box, ListItem } from "@chakra-ui/layout";
 import Head from "next/head";
+import { useBoardPositionStore } from "store/boardPosition";
 
 import { DarkModeSwitch, SideBar } from "components";
-import { Board } from "modules/game";
+import { BackToCenterButton, Board } from "modules/game";
 
 const Index = () => {
+  // ? Board position store
+  const { resetPosition, resetScale } = useBoardPositionStore();
+
   const bg = useColorModeValue("gray.100", "gray.800");
 
   return (
@@ -32,6 +36,13 @@ const Index = () => {
         zIndex={2}
       >
         <Board />
+
+        <BackToCenterButton
+          onClick={() => {
+            resetPosition();
+            resetScale();
+          }}
+        />
       </Box>
     </>
   );

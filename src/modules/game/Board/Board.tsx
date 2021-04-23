@@ -1,17 +1,19 @@
 import { useColorMode, useTheme } from "@chakra-ui/react";
 import { KonvaEventObject } from "konva/types/Node";
 import { Vector2d } from "konva/types/types";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Circle, Layer, Stage } from "react-konva";
+import { useBoardPositionStore } from "store/boardPosition";
 
 import { Grid } from "components";
 import { useWindowSize } from "hooks";
 
-import { BackToCenterButton } from "..";
-
 const CELL_SIZE = 32;
 
 const Board: React.FC = () => {
+  // ? Board position store
+  const { stagePosition, stageScale, updatePosition, updateScale } = useBoardPositionStore();
+
   const theme = useTheme();
   const { colorMode } = useColorMode();
   const { width, height } = useWindowSize();
@@ -26,9 +28,6 @@ const Board: React.FC = () => {
   }, [theme.radii]);
 
   // ? Handle zoom on scroll
-  const [stageScale, setStageScale] = useState(1);
-  const [stageX, setStageX] = useState(0);
-  const [stageY, setStageY] = useState(0);
   const handleWheel = (e: KonvaEventObject<WheelEvent>) => {
     e.evt.preventDefault();
 
@@ -45,49 +44,38 @@ const Board: React.FC = () => {
       const calculatedScale = e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
       const newScale = calculatedScale > 3 ? 3 : calculatedScale < 0.5 ? 0.5 : calculatedScale;
 
-      setStageScale(newScale);
-      setStageX(-(mousePointTo.x - (stage.getPointerPosition()?.x ?? 0) / newScale) * newScale);
-      setStageY(-(mousePointTo.y - (stage.getPointerPosition()?.y ?? 0) / newScale) * newScale);
+      updateScale(newScale);
+      updatePosition({
+        x: -(mousePointTo.x - (stage.getPointerPosition()?.x ?? 0) / newScale) * newScale,
+        y: -(mousePointTo.y - (stage.getPointerPosition()?.y ?? 0) / newScale) * newScale
+      });
     }
   };
 
   return (
-    <>
-      <Stage
-        width={width - 64}
-        height={height - 48}
-        onWheel={handleWheel}
-        scaleX={stageScale}
-        scaleY={stageScale}
-        x={stageX}
-        y={stageY}
-        draggable
-        dragBoundFunc={(pos: Vector2d): Vector2d => {
-          const x = pos.x > 1200 ? 1200 : pos.x < -1200 ? -1200 : pos.x;
-          const y = pos.y > 1200 ? 1200 : pos.y < -1200 ? -1200 : pos.y;
+    <Stage
+      width={width - 64}
+      height={height - 48}
+      onWheel={handleWheel}
+      scaleX={stageScale}
+      scaleY={stageScale}
+      x={stagePosition.x}
+      y={stagePosition.y}
+      draggable
+      dragBoundFunc={(pos: Vector2d): Vector2d => {
+        const x = pos.x > 1200 ? 1200 : pos.x < -1200 ? -1200 : pos.x;
+        const y = pos.y > 1200 ? 1200 : pos.y < -1200 ? -1200 : pos.y;
 
-          return { x, y };
-        }}
-        onDragEnd={(e) => {
-          setStageX(e.currentTarget.getPosition().x);
-          setStageY(e.currentTarget.getPosition().y);
-        }}
-        style={{ cursor: "move" }}
-      >
-        <Layer ref={layerRef as any}>
-          <Grid color={strokeColor} cellSize={CELL_SIZE} />
-          <Circle x={200} y={100} radius={50} fill="green" draggable />
-        </Layer>
-      </Stage>
-
-      <BackToCenterButton
-        onClick={() => {
-          setStageX(0);
-          setStageY(0);
-          setStageScale(1);
-        }}
-      />
-    </>
+        return { x, y };
+      }}
+      onDragEnd={(e) => updatePosition(e.currentTarget.getPosition())}
+      style={{ cursor: "move" }}
+    >
+      <Layer ref={layerRef as any}>
+        <Grid color={strokeColor} cellSize={CELL_SIZE} />
+        <Circle x={200} y={100} radius={50} fill="green" draggable />
+      </Layer>
+    </Stage>
   );
 };
 
