@@ -7,14 +7,14 @@ import {
 
 const IconButton: React.FC<IconButtonProps> = ({
   icon,
-  placement,
+  tooltipPlacement,
   tooltip,
   onClick,
   colorScheme = "gray",
   ...rest
 }: IconButtonProps) => {
   return (
-    <Tooltip hasArrow label={tooltip} placement={placement} colorScheme={colorScheme}>
+    <Tooltip hasArrow label={tooltip} placement={tooltipPlacement} colorScheme={colorScheme}>
       <CIconButton
         icon={icon}
         variant="ghost"
@@ -30,7 +30,7 @@ export default IconButton;
 
 export interface IconButtonProps extends CIconButtonProps {
   icon: React.ReactElement;
-  placement: Placement;
+  tooltipPlacement: Placement;
   tooltip: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   colorScheme?: string;

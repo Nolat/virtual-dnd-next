@@ -12,7 +12,7 @@ const DarkModeSwitch: React.FC = () => {
       icon={isDark ? <FiMoon /> : <FiSun />}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       tooltip={`Switch to ${isDark ? "light" : "dark"} mode`}
-      placement="right"
+      tooltipPlacement="right"
       onClick={toggleColorMode}
     />
   );

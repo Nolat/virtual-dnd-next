@@ -1,0 +1,40 @@
+{
+  "list": [
+    {
+      "name": "Sacred Spring",
+      "width": 16,
+      "height": 22,
+      "imageUrl": "https://i.ibb.co/Hzcvc4b/Sacred-Spring-Natural-Day.jpg"
+    },
+    {
+      "name": "Desert Ruins",
+      "width": 27,
+      "height": 18,
+      "imageUrl": "https://i.ibb.co/z5dZM3n/Desert-Ruins.jpg"
+    },
+    {
+      "name": "Autumn Stream",
+      "width": 23,
+      "height": 16,
+      "imageUrl": "https://i.ibb.co/vh6HkDm/Autumn-Stream.jpg"
+    },
+    {
+      "name": "City Gates",
+      "width": 22,
+      "height": 16,
+      "imageUrl": "https://i.ibb.co/SX8TGY1/City-Gates-Market-Day-22x16.jpg"
+    },
+    {
+      "name": "Celestial Temple",
+      "width": 16,
+      "height": 22,
+      "imageUrl": "https://i.ibb.co/p0LyNXs/Celestial-Temple-Ruined-4-16x22.png"
+    },
+    {
+      "name": "Underground Highway",
+      "width": 22,
+      "height": 16,
+      "imageUrl": "https://i.ibb.co/N7PcwxR/Underground-Highway-Bare-22x16.jpg"
+    }
+  ]
+}

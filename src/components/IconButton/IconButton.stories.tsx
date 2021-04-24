@@ -21,7 +21,7 @@ export const Default: Story = ({ onClick }) => {
       icon={<FiMap />}
       aria-label="Import your battlemaps"
       tooltip="Import your battlemaps"
-      placement="right"
+      tooltipPlacement="right"
       onClick={onClick}
     />
   );

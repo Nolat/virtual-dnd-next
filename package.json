@@ -21,6 +21,7 @@
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",
     "framer-motion": "^4.0.3",
+    "fuse.js": "^6.4.6",
     "konva": "^7.2.5",
     "next": "latest",
     "react": "^17.0.2",

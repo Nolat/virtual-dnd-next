@@ -2,8 +2,10 @@ import { useColorMode, useTheme } from "@chakra-ui/react";
 import { KonvaEventObject } from "konva/types/Node";
 import { Vector2d } from "konva/types/types";
 import { useEffect, useRef } from "react";
-import { Circle, Layer, Stage } from "react-konva";
+import { Image, Layer, Stage } from "react-konva";
+import { useBattlemapStore } from "store/battlemap";
 import { useBoardPositionStore } from "store/boardPosition";
+import useImage from "use-image";
 
 import { Grid } from "components";
 import { useWindowSize } from "hooks";
@@ -13,6 +15,9 @@ const CELL_SIZE = 32;
 const Board: React.FC = () => {
   // ? Board position store
   const { stagePosition, stageScale, updatePosition, updateScale } = useBoardPositionStore();
+  // ? Battlemap store
+  const { battlemapUrl } = useBattlemapStore();
+  const [image] = useImage(battlemapUrl);
 
   const theme = useTheme();
   const { colorMode } = useColorMode();
@@ -72,8 +77,8 @@ const Board: React.FC = () => {
       style={{ cursor: "move" }}
     >
       <Layer ref={layerRef as any}>
+        <Image image={image} draggable />
         <Grid color={strokeColor} cellSize={CELL_SIZE} />
-        <Circle x={200} y={100} radius={50} fill="green" draggable />
       </Layer>
     </Stage>
   );

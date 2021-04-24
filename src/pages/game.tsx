@@ -4,7 +4,12 @@ import Head from "next/head";
 import { useBoardPositionStore } from "store/boardPosition";
 
 import { DarkModeSwitch, SideBar } from "components";
-import { BackToCenterButton, Board } from "modules/game";
+import {
+  BackToCenterButton,
+  Board,
+  SelectBattlemapButton,
+  SelectBattlemapModal
+} from "modules/game";
 
 const Index = () => {
   // ? Board position store
@@ -21,6 +26,9 @@ const Index = () => {
 
       <SideBar side="left" align="bottom">
         <ListItem>
+          <SelectBattlemapButton />
+        </ListItem>
+        <ListItem>
           <DarkModeSwitch />
         </ListItem>
       </SideBar>
@@ -36,6 +44,8 @@ const Index = () => {
         zIndex={2}
       >
         <Board />
+
+        <SelectBattlemapModal />
 
         <BackToCenterButton
           onClick={() => {
